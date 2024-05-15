@@ -1,0 +1,1 @@
+import { argv, stdin, stdout, stderr, exit } from 'node:process';

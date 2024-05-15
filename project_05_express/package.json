@@ -1,0 +1,20 @@
+{
+  "name": "project_05_express",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "The Project 05",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --ignore *.json index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
