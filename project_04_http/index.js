@@ -144,9 +144,37 @@ const srvHandler = (req, res) => {
             break;
 
         case 'PATCH':
-            // TODO: Домашнее задание - попробовать реализовать самостоятельно
+          let data2 = '';
+            req.on('data', (chunk)=> {
+                if(chunk) {
+                    data2+=chunk;
+                }
+            });
+
+            req.on('end', ()=> {
+                const id = url.replace('/api/contacts/', '');
+
+                const body = data2.toString();
+                const contentType= req.headers['content-type'];
+
+                const parsedBody = bodyParser(contentType, body);
+
+                let editRecord = database.find(elem=>elem.id === +id);
+
+                      if (editRecord)
+                        {
+                          editRecord.id = editRecord.id;
+                          editRecord.name = parsedBody.find(item=>{
+                              return item.name === 'name'
+                            }).value;
+                          editRecord.phone = parsedBody.find(item=>{
+                              return item.name === 'phone'
+                            }).value;
+                          };
+                          
             res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end('{"id": 1, "name": "Ivanov Ivan","phone": "89998886655"}');
+            res.end(JSON.stringify(editRecord)); 
+            });  
             break;
 
         case 'DELETE':
